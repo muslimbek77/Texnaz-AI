@@ -6,7 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI(title="Texnaz AI API", version="0.1.0", description="Texnika va yoqilg‘i monitoring API")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[],
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1):\d+",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -26,6 +27,19 @@ ALERTS = [
     {"id": 3, "severity": "info", "title": "Bo‘sh ishlash vaqti oshdi", "vehicle": "CAT 320D · 01 A 777 QA", "time": "09:56", "detail": "Dvigatel 42 daqiqa davomida bo‘sh ishladi"},
 ]
 
+MAINTENANCE = [
+    {"id": "MX-001", "vehicle": "CAT 320D · 01 A 777 QA", "service": "Moy almashtirish", "due_date": "2026-10-24", "workshop": "Toshkent markaziy ustaxonasi", "status": "Rejalashtirilgan"},
+    {"id": "MX-002", "vehicle": "HOWO yuk mashinasi · 01 A 214 QA", "service": "Tormoz tizimini tekshirish", "due_date": "2026-10-20", "workshop": "Samarqand ustaxonasi", "status": "Muddati o‘tgan"},
+    {"id": "MX-003", "vehicle": "XCMG GR165 · 10 B 908 PA", "service": "Rejali texnik ko‘rik", "due_date": "2026-10-28", "workshop": "Jizzax ustaxonasi", "status": "Rejalashtirilgan"},
+]
+
+FUEL_REPORT = [
+    {"day": "14 okt", "liters": 2510}, {"day": "15 okt", "liters": 2635},
+    {"day": "16 okt", "liters": 2470}, {"day": "17 okt", "liters": 2780},
+    {"day": "18 okt", "liters": 2695}, {"day": "19 okt", "liters": 2732},
+    {"day": "20 okt", "liters": 2846},
+]
+
 
 @app.get("/api/health")
 def health():
@@ -42,6 +56,16 @@ def vehicles(status: str | None = None):
 @app.get("/api/alerts")
 def alerts():
     return ALERTS
+
+
+@app.get("/api/maintenance")
+def maintenance():
+    return MAINTENANCE
+
+
+@app.get("/api/reports")
+def reports():
+    return {"period": "14–20 oktabr 2026", "fuel_by_day": FUEL_REPORT}
 
 
 @app.get("/api/dashboard")
