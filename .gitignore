@@ -1,7 +1,12 @@
 node_modules/
 dist/
+build/
 .venv/
+venv/
+.python-deps/
 __pycache__/
 *.py[cod]
 .env
+.env.*
+!.env.example
 .DS_Store
