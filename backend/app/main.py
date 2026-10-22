@@ -1,13 +1,21 @@
 from datetime import datetime, timezone
+import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Texnaz AI API", version="0.1.0", description="Texnika va yoqilg‘i monitoring API")
+cors_origins = [
+    origin.strip()
+    for origin in os.getenv(
+        "CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
+    ).split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[],
-    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1):\d+",
+    allow_origins=cors_origins,
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -71,10 +79,10 @@ def reports():
 @app.get("/api/dashboard")
 def dashboard():
     return {
-        "fleet_total": 128,
-        "active": 96,
+        "fleet_total": len(VEHICLES),
+        "active": sum(vehicle["status"] == "ishlamoqda" for vehicle in VEHICLES),
         "fuel_saved_percent": 12.4,
         "open_alerts": len(ALERTS),
-        "daily_fuel_liters": 2846,
+        "daily_fuel_liters": FUEL_REPORT[-1]["liters"],
         "demo_data": True,
     }

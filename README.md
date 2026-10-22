@@ -12,6 +12,8 @@ npm install
 npm run dev
 ```
 
+Frontend so‘rovlarni `/api` orqali yuboradi; Vite bu yo‘lni lokalda `http://127.0.0.1:8000` backendiga yo‘naltiradi. Alohida joylashtirilgan backend uchun frontendni build qilishdan oldin `VITE_API_URL` qiymatini backend manziliga o‘rnating (masalan, `https://api.example.com`).
+
 ### Backend
 
 ```bash
@@ -22,7 +24,9 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-API hujjatlari: http://localhost:8000/docs
+API hujjatlari: http://localhost:8000/docs. Boshqa domenlardan foydalanilganda backendda `CORS_ORIGINS` ni vergul bilan ajratilgan frontend originlari bilan sozlang, masalan `https://dashboard.example.com`.
+
+API tekshiruvi: `http://localhost:8000/api/health`. Dashboard, texnikalar, ogohlantirishlar, texnik xizmat va hisobotlar `/api/dashboard`, `/api/vehicles`, `/api/alerts`, `/api/maintenance` va `/api/reports` endpointlaridan olinadi.
 
 Hozirgi dashboard demo ma’lumotlardan foydalanadi. IoT qurilmalar, xarita provayderi, Telegram/SMS, 1C va E-Ombor integratsiyalari keyingi bosqichlarda ulanadi.
 
