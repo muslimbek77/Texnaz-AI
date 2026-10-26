@@ -30,6 +30,12 @@ API tekshiruvi: `http://localhost:8000/api/health`. Dashboard, texnikalar, ogohl
 
 Hozirgi dashboard demo ma’lumotlardan foydalanadi. IoT qurilmalar, xarita provayderi, Telegram/SMS, 1C va E-Ombor integratsiyalari keyingi bosqichlarda ulanadi.
 
+## Demo hisob va sozlamalar
+
+Yangi deployda birinchi administrator hisobi yaratiladi. Serverdagi `.env` faylidan `ADMIN_SETUP_TOKEN` qiymatini olib, boshlang‘ich sozlash formasiga kiriting. Tokenni maxfiy saqlang. Ism, login, email va kamida 8 belgili parol tanlang; undan keyin login va parol bilan kirasiz. Demo serverda `texnaz` hisobi oldindan sozlangan.
+
+Dashboard, texnika, ogohlantirishlar, xizmat va hisobot API’lari sessiya cookie’si orqali himoyalangan. `Sozlamalar` sahifasi bildirishnomalar hamda yangilanish oralig‘ini saqlaydi; `Hisob` sahifasida profilni o‘zgartirish, parolni yangilash va chiqish mumkin. Foydalanuvchi va sozlamalar SQLite bazasida Docker volume’da saqlanadi.
+
 ## Tuzilma
 
 - `frontend/` — React + Vite web dashboard
