@@ -287,7 +287,7 @@ def update_account(payload: AccountPayload, user=Depends(require_user)):
             )
     except sqlite3.IntegrityError:
         raise HTTPException(status_code=409, detail="Bu email boshqa hisobda ishlatilgan")
-    return {"user": {"id": user["id"], "full_name": full_name, "email": email}}
+    return {"user": {**user, "full_name": full_name, "email": email}}
 
 
 @app.put("/api/account/password")
