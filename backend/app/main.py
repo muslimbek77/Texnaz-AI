@@ -193,16 +193,16 @@ ALERTS = [
 ]
 
 MAINTENANCE = [
-    {"id": "MX-001", "vehicle": "CAT 320D · 01 A 777 QA", "service": "Moy almashtirish", "due_date": "2026-10-24", "workshop": "Toshkent markaziy ustaxonasi", "status": "Rejalashtirilgan"},
-    {"id": "MX-002", "vehicle": "HOWO yuk mashinasi · 01 A 214 QA", "service": "Tormoz tizimini tekshirish", "due_date": "2026-10-20", "workshop": "Samarqand ustaxonasi", "status": "Muddati o‘tgan"},
-    {"id": "MX-003", "vehicle": "XCMG GR165 · 10 B 908 PA", "service": "Rejali texnik ko‘rik", "due_date": "2026-10-28", "workshop": "Jizzax ustaxonasi", "status": "Rejalashtirilgan"},
+    {"id": "MX-001", "vehicle": "CAT 320D · 01 A 777 QA", "service": "Moy almashtirish", "due_date": "2026-11-06", "workshop": "Toshkent markaziy ustaxonasi", "status": "Rejalashtirilgan"},
+    {"id": "MX-002", "vehicle": "HOWO yuk mashinasi · 01 A 214 QA", "service": "Tormoz tizimini tekshirish", "due_date": "2026-11-02", "workshop": "Samarqand ustaxonasi", "status": "Muddati o‘tgan"},
+    {"id": "MX-003", "vehicle": "XCMG GR165 · 10 B 908 PA", "service": "Rejali texnik ko‘rik", "due_date": "2026-11-12", "workshop": "Jizzax ustaxonasi", "status": "Rejalashtirilgan"},
 ]
 
 FUEL_REPORT = [
-    {"day": "14 okt", "liters": 2510}, {"day": "15 okt", "liters": 2635},
-    {"day": "16 okt", "liters": 2470}, {"day": "17 okt", "liters": 2780},
-    {"day": "18 okt", "liters": 2695}, {"day": "19 okt", "liters": 2732},
-    {"day": "20 okt", "liters": 2846},
+    {"day": "28 okt", "liters": 2510}, {"day": "29 okt", "liters": 2635},
+    {"day": "30 okt", "liters": 2470}, {"day": "31 okt", "liters": 2780},
+    {"day": "1 noy", "liters": 2695}, {"day": "2 noy", "liters": 2732},
+    {"day": "3 noy", "liters": 2846},
 ]
 
 
@@ -344,7 +344,7 @@ def maintenance(user=Depends(require_user)):
 
 @app.get("/api/reports")
 def reports(user=Depends(require_user)):
-    return {"period": "14–20 oktabr 2026", "fuel_by_day": FUEL_REPORT}
+    return {"period": "28 oktabr – 3 noyabr 2026", "fuel_by_day": FUEL_REPORT}
 
 
 @app.get("/api/dashboard")
